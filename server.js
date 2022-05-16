@@ -41,9 +41,9 @@ io.on('connection', (socket) => {
 
     /* Output a log message on the server and send it to the clients */
     function serverLog(...messages){
-        io.emit('log', ['**** Message from the server:\n']);
+        io.emit('log',['**** Message from the server:\n']);
         messages.forEach((item) => {
-            io.emit('log', ['****\t'+item]);
+            io.emit('log',['****\t'+item]);
             console.log(item);
         })
     }
