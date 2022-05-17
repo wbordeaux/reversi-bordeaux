@@ -37,6 +37,28 @@ socket.on('join_room_response', (payload) =>{
     $('#messages').prepend(newString);
 });
 
+function sendChatMessage(){
+    let request = {};
+    request.room = chatRoom;
+    request.username = username;
+    request.message = $('#chatMessage').val();
+    console.log('**** Client log message, sending \'send_chat_message\' command: '+JSON.stringify(request));
+    socket.emit('send_chat_message',request);
+}
+
+socket.on('send_chat_message_response', (payload) =>{
+    if(( typeof payload == 'undefined') || (payload === null)){
+        console.log('Server did not send a payload');
+        return;
+    }
+    if(payload.result === 'fail'){
+        console.log(payload.message);
+        return;
+    }
+    let newString = '<p class=\'chat_message\'><b>'+payload.username+'</b>: '+payload.message+'</p>';
+    $('#messages').prepend(newString);
+});
+
 /* Request to join the chat room */
 $( () => {
     let request = {};
