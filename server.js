@@ -10,7 +10,7 @@ let port = process.env.PORT;
 let directory = __dirname + '/public';
 
 /* If we aren't on Heroku, then we need to adjust our port and directory */
-if ((typeof port == 'undefined') || (port === null)){
+if ((typeof port == 'undefined') || ( port === null)){
     port = 8080;
     directory = './pubic';
 }
