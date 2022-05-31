@@ -1,9 +1,9 @@
 body {
-    background-color: rgb(189, 211, 201);
+    background-color: rgb(163, 194, 181);
 }
 
 .headerrow, #messagePane {
-    background-color: darkseagreen;
+    background-color: rgb(194, 214, 206);
 }
 
 .join_room_response, .left_room_response {
@@ -23,6 +23,7 @@ table#game_board {
 }
 
 table#game_board td {
+    background-color: rgb(189, 211, 201);
     border:1px solid black;
     margin:0px;
     padding:0px;
