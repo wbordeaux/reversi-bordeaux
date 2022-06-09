@@ -392,19 +392,22 @@ socket.on('game_update', (payload) =>{
         return ( () =>{
             let d = new Date();
             let elapsed_m = d.getTime() - last_time;
-            let minutes = Math.floor((elapsed_m/1000)/60);
+            let minutes = Math.floor(elapsed_m / (60 * 1000));
             let seconds = Math.floor((elapsed_m % (60 * 1000))/1000);
             let total = minutes * 60 + seconds;
-            let timestring = ""+seconds;
-            timestring = timestring.padStart(2,'0');
-            timestring = minutes+":"+timestring;
+            if (total > 100) {
+                total = 100;
+            }
+            $("#elapsed").css("width" , total + "%").attr("aria-valuenow", total);
+            let timestring = "" + seconds;
+            timestring = timestring.padStart(2, '0');
+            timestring = minutes + ":" + timestring;
             if (total < 100){
                 $("#elapsed").html(timestring);
             }
             else {
                 $("#elapsed").html("Times up!");
             }
-            $("#elapsed").css("width",total+"%").attr("aria-valuenow",total);
         })
 
     })(payload.game.last_move_time)
